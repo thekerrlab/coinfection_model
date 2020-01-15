@@ -30,8 +30,7 @@ hsim2.plot()
 ax4 = pl.subplot(2,2,4)
 tsim2.plot()
 
-pl.show()
-
 pl.savefig('coinfection_model.png')
+pl.show()
 
 print('Done.')
