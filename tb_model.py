@@ -25,21 +25,27 @@ class TB_Model:
         self.S[0] = pars.popsize*(1-pars.init_prev)
         self.I[0] = pars.popsize*pars.init_prev
     
+
     def step(self):
         factor = (1+sv.hiv_prev) if self.coinfection else 1
         t = self.t
+
         dS = self.S[t]*self.pars.beta*factor
         dI = self.I[t]*self.pars.recov
+        
         self.S[t+1] = self.S[t] - dS + dI
         self.I[t+1] = self.I[t] + dS - dI
         self.t += 1
+
         sv.tb_prev = self.I[t+1]/(self.S[t+1]+self.I[t+1])
         print(f'TB {t}: HIV={sv.hiv_prev:0.2f}, TB={sv.tb_prev:0.2f}')
     
+
     def run(self):
         for t in self.tvec[:-1]:
             self.step()
     
+
     def plot(self):
         pl.plot(self.tvec, self.S, label='S', lw=2)
         pl.plot(self.tvec, self.I, label='I', lw=2)

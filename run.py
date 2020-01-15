@@ -3,7 +3,9 @@ import hiv_model as hm
 import tb_model as tm
 
 
+# Initialize plotting
 fig = pl.figure(figsize=(24,16))
+
 
 # Run without coinfection
 hsim1 = hm.HIV_Model(hm.default_pars, coinfection=False)
@@ -20,7 +22,6 @@ tsim1.plot()
 # Run with coinfection
 hsim2 = hm.HIV_Model(hm.default_pars, coinfection=True)
 tsim2 = tm.TB_Model(tm.default_pars, coinfection=True)
-
 for t in hsim2.tvec[:-1]:
     hsim2.step()
     tsim2.step()
@@ -30,6 +31,8 @@ hsim2.plot()
 ax4 = pl.subplot(2,2,4)
 tsim2.plot()
 
+
+# Tidy up
 pl.savefig('coinfection_model.png')
 pl.show()
 
