@@ -11,4 +11,4 @@ Illustrates how to share data between two unrelated models.
 
 ## Usage
 
-`python -i run.py`
+`python run.py`
