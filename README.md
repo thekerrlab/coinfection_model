@@ -6,7 +6,7 @@ Illustrates how to share data between two unrelated models.
 
 * `hiv_model.py` contains the "HIV" model (actually not, since it's SIR).
 * `tb_model.py` contains the "TB" model (actually not, since it's SI).
-* `shared_vars.py` defines the variables that will be shared between the models.
+* `shared_vars.py` defines the variables that will be shared between the models. **This is the secret sauce that lets this solution work.**
 * `run.py` coordinates the running of the models either independently or together.
 
 ## Usage
