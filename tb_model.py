@@ -26,8 +26,9 @@ class TB_Model:
         self.I[0] = pars.popsize*pars.init_prev
     
     def step(self):
+        factor = (1+sv.hiv_prev) if self.coinfection else 1
         t = self.t
-        dS = self.S[t]*self.pars.beta*(1+sv.hiv_prev)
+        dS = self.S[t]*self.pars.beta*factor
         dI = self.I[t]*self.pars.recov
         self.S[t+1] = self.S[t] - dS + dI
         self.I[t+1] = self.I[t] + dS - dI

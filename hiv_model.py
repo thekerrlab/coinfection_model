@@ -27,9 +27,10 @@ class HIV_Model:
         self.I[0] = pars.popsize*pars.init_prev
     
     def step(self):
+        factor = (1-sv.tb_prev) if self.coinfection else 1
         t = self.t
         dS = self.S[t]*self.pars.beta
-        dR = self.I[t]*self.pars.recov*(1-sv.tb_prev)
+        dR = self.I[t]*self.pars.recov*factor
         self.S[t+1] = self.S[t] - dS
         self.I[t+1] = self.I[t] + dS - dR
         self.R[t+1] = self.R[t] + dR
